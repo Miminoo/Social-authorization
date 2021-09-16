@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: ei7veeChu4bo
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: Social_Authorization_development
+
+test:
+  <<: *default
+  database: Social_Authorization_test
+
+production:
+  <<: *default
+  database: Social_Authorization_production
+  username: Social_Authorization
+  password: <%= ENV['SOCIAL_AUTHORIZATION_DATABASE_PASSWORD'] %>
