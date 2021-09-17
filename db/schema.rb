@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_09_16_234457) do
     t.date "first_sign_in_at"
     t.date "last_sign_in_at"
     t.string "reset_password_token"
+    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider", limit: 50, default: "", null: false

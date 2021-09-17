@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  root 'home#users'
   devise_for :users, controllers: {omniauth_callbacks:'omniauth'}
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_scope :user do
+    authenticated :user do
+      root 'home#users', as: :authenticated_root
+      get 'home', to: "home#users"
+      get "users/:id", to: "users#index", as: "user"
+      delete "users/:id", to: "users#destroy"
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
 end

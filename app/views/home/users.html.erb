@@ -38,7 +38,6 @@
   <thead class="thead-dark">
    <tr>
       <th><input class="checkbox" type="checkbox" id="check" name="checkRow" style="opacity: 1;"> </th>
-      <th><input class="checkbox" type="checkbox" id="check" name="checkRow" style="opacity: 1;"> </th>
       <th onclick="sortTable(1)">Unique id</th>
       <th onclick="sortTable(2)">Name</th>
       <th>
@@ -75,9 +74,6 @@
       
         <td>
         <%= link_to "Delete", user_path(user.id), method: :delete, data: { confirm: "Really delete this user?" }%>
-        </td>
-        td>
-        <%= link_to "Update", user_path(user.id), method: :update, data: { confirm: "Really update this user?" }%>
         </td>
         <td><%= user.uid %></td>
         <td><%= user.name %></td>
