@@ -17,7 +17,10 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -25,7 +28,11 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'activerecord-session_store'
 gem 'omniauth-rails_csrf_protection'
-
+gem 'omniauth-vkontakte'
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+# gem 'dotenv-rails', groups: [:development, :test]
+# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
