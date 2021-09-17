@@ -1,26 +1,50 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand " href="#">AuthorizationProject</a>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</nav>
+<div class="container" style="text-align:center; padding: 15px;">
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+<%= link_to (image_tag("Networks/#{OmniAuth::Utils.camelize(provider)}.png", class: "img_class_goes_here", size: "50x50")), omniauth_authorize_path(resource_name, provider), class: "navbar-brand bg-white", method: :post %>
+<%end%>
+<%end%>
+<h1 style="text-align:center;padding:15px;">Count authorization users: <%= User.count %> </h1>
+<div class="wrapper" style="height:500px;">
+  <canvas id = "myChart">
+  </canvas>
+</div>
+</div>
+ <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: <%= index2.keys.to_json.html_safe %>,
+            datasets: [{
+                label: '# of Votes',
+                data: <%= index2.values.to_json.html_safe %>,
+                backgroundColor: [
+                    'blue',
+                    'rgb(247, 131, 0)',
+                    'black'
+                ],
+                borderColor: [
+                    'blue',
+                    'rgb(247, 131, 0)',
+                    'black'
+                ],
+                borderWidth: 0.5
+            }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

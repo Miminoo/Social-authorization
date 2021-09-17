@@ -1,2 +1,95 @@
-<h1>Home#users</h1>
-<p>Find me in app/views/home/users.html.erb</p>
+<style>
+/* .highlight {background:blue;}
+.highlight {background:white;} */
+</style>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid ">
+    <a class="navbar-brand" href="#">AuthorizationProject</a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="nav">
+        <% if user_signed_in? %>
+        <li class="nav-item m-2 ">
+          <a class="navbar-brand">Hello, <%= current_user.name %>, nice to meet you.</a>
+        </li>
+        <li class="nav-item m-2 navbar-brand">
+         <%= link_to "Logout", destroy_user_session_path, :method => :delete%>
+        </li>
+        <% end %>
+        </ul>
+    </div>
+  </div>
+</nav>
+<ul>
+
+</ul>
+<nav class="nav">
+  <a class="nav-link active p-2" onclick="checkboxesChecked()">
+
+  <%
+=begin%>
+ <%= image_tag "Elements/block.png" , size: "35x35"%>  
+<%
+=end%>
+  </a>
+  <a class="nav-link active p-2" href="#">  <%= image_tag "Elements/unblock.png" , size: "35x35"%> </a>
+  <a class="nav-link active p-2" href="#">  <%= image_tag "Elements/delete.png" , size: "35x35"%> </a>
+</nav>
+<table class="table" id="myTable2">
+  <thead class="thead-dark">
+   <tr>
+      <th><input class="checkbox" type="checkbox" id="check" name="checkRow" style="opacity: 1;"> </th>
+      <th><input class="checkbox" type="checkbox" id="check" name="checkRow" style="opacity: 1;"> </th>
+      <th onclick="sortTable(1)">Unique id</th>
+      <th onclick="sortTable(2)">Name</th>
+      <th>
+      <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Provider
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <% for i in index2.keys do %>
+      <li><a class="dropdown-item" id="myInput" onclick ="myFiltr('<%= i %>',3)"> <%= i %> <a></li>
+    <% end %>
+  </ul>
+</div>
+      </th>
+      <th onclick="sortTable(4)">First sign date</th>
+      <th onclick="sortTable(5)">Last sign date</th>
+      <th>
+      <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Status
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" id="myInput" onclick ="myFiltr('Block',6)"> Block </a></li>
+    <li><a class="dropdown-item" id="myInput" onclick ="myFiltr('Unblock',6)"> Unblock </a></li>
+  </ul>
+</div>
+      </th>
+      <th colspan="8"></th>
+    </tr>
+  </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+      
+        <td>
+        <%= link_to "Delete", user_path(user.id), method: :delete, data: { confirm: "Really delete this user?" }%>
+        </td>
+        td>
+        <%= link_to "Update", user_path(user.id), method: :update, data: { confirm: "Really update this user?" }%>
+        </td>
+        <td><%= user.uid %></td>
+        <td><%= user.name %></td>
+        <td><%= user.provider %></td>
+         <td><%= user.first_sign_in_at %></td>
+        <td><%= user.last_sign_in_at %></td>
+        <% if user.status == true%>
+        <td style="color:green;">Unblock</td>
+        <% else %>
+        <td style="color:red;">Block</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
