@@ -16,8 +16,6 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['CLEARDB_DATABASE_DATA']%>
-  username: root
-  password: ei7veeChu4bo
-  # username: Social_Authorization
-  # password: <%= ENV['SOCIAL_AUTHORIZATION_DATABASE_PASSWORD'] %>
+  database: Social_Authorization_production
+  username: Social_Authorization
+  password: <%= ENV['SOCIAL_AUTHORIZATION_DATABASE_PASSWORD'] %>
