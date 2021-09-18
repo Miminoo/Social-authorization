@@ -17,7 +17,7 @@
 </nav>
 <ul>
 </ul>
-
+<% if current_user %>
 <%= form_tag bulk_destroy_home_index_path, method: :delete, method: :put do %>
 <%
 =begin%>
@@ -78,4 +78,7 @@
       <% end %>
   </tbody>
 </table>
+<%end%>
+<% else %>
+<% controller.redirect_to destroy_user_session_path %>
 <%end%>

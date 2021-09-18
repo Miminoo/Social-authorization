@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {omniauth_callbacks:'omniauth'}
+  devise_for :users, controllers: {omniauth_callbacks: 'omniauth'}
+  get "devise/sessions", to: "devise/sessions#new"
   devise_scope :user do
     authenticated :user do
       root 'home#users', as: :authenticated_root
       get 'home', to: "home#users"
-      get "users/:id", to: "users#index", as: "user"
       resources :home do 
         collection do 
           put :bulk_destroy
