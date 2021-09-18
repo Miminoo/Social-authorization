@@ -2,11 +2,16 @@ class HomeController < ApplicationController
   def users
     @users = User.all
   end
-  def destroy_multiple
-    current_user.entries.destroy_all(:id => params[:user_ids])
-    respond_to do |format|
-      format.html { redirect_to(new_user_session_url) }
-      format.xml  { head :ok }
-    end 
+  def bulk_destroy
+    if params[:delete]
+      User.where(id: params[:home_ids]).destroy_all
+      redirect_to home_url
+    elsif params[:block]
+      User.where(id: params[:home_ids]).update_all(status: false)
+      redirect_to home_url
+    elsif params[:unblock]
+      User.where(id: params[:home_ids]).update_all(status: true)
+      redirect_to home_url
   end
+end
 end

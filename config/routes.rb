@@ -5,7 +5,12 @@ Rails.application.routes.draw do
       root 'home#users', as: :authenticated_root
       get 'home', to: "home#users"
       get "users/:id", to: "users#index", as: "user"
-      delete "users/:id", to: "users#destroy"
+      resources :home do 
+        collection do 
+          put :bulk_destroy
+          delete :bulk_destroy
+        end
+      end 
     end
 
     unauthenticated do
