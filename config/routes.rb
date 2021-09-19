@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       get 'home', to: "home#users"
       resources :home do 
         collection do 
-          put :bulk_destroy
-          delete :bulk_destroy
+          put :table_def
+          delete :table_def
         end
       end 
     end

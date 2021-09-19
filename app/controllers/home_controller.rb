@@ -2,10 +2,10 @@ class HomeController < ApplicationController
   def users
     @users = User.all
   end
-  def bulk_destroy
+  def table_def
       if params[:delete]
-        User.where(id: params[:home_ids]).destroy_all
-        redirect_to home_url
+        user = User.where(id: params[:home_ids]).destroy_all
+        redirect_to new_user_session_path
       end
       if params[:block]
         User.where(id: params[:home_ids]).update_all(status: false)
@@ -15,5 +15,6 @@ class HomeController < ApplicationController
         User.where(id: params[:home_ids]).update_all(status: true)
         redirect_to home_url
       end
+    end
   end
-end
+

@@ -17,22 +17,14 @@
 </nav>
 <ul>
 </ul>
-<% if current_user %>
-<%= form_tag bulk_destroy_home_index_path, method: :delete, method: :put do %>
-<%
-=begin%>
- <%= image_submit_tag("Elements/delete.png", width: "35", height: "35", name: 'delete', method: :delete) %>
-<%= image_submit_tag("Elements/block.png", width: "35", height: "35", name: 'delete', method: :put) %>
-<%= image_submit_tag("Elements/unblock.png", width: "35", height: "35", name: 'delete', method: :put) %> 
-<%
-=end%>
-<%= submit_tag('Delete', name: 'delete', method: :delete) %>
-<%= submit_tag('Unblock', name: 'unblock', method: :put) %>
-<%= submit_tag('Block', name: 'block', method: :put) %>
+<%= form_tag table_def_home_index_path, method: :delete, method: :put do %>
+<%= button_tag(image_tag("Elements/delete.png", size: "35x35"), name: "delete", class: "btn btn-link") %>
+<%= button_tag(image_tag("Elements/block.png", size: "35x35"), name: "block", class: "btn btn-link") %>
+<%= button_tag(image_tag("Elements/unblock.png", size: "35x35"), name: "unblock", class: "btn btn-link") %>
 <table class="table" id="myTable2">
   <thead class="thead-dark">
    <tr>
-      <th><input class="checkbox" type="checkbox" id="check" name="checkRow" style="opacity: 1;"> </th>
+      <th> <input id = "main_checkbox" type="checkbox" onclick = ShowHide()> </th>
       <th onclick="sortTable(1)">Unique id</th>
       <th onclick="sortTable(2)">Name</th>
       <th>
@@ -78,7 +70,4 @@
       <% end %>
   </tbody>
 </table>
-<%end%>
-<% else %>
-<% controller.redirect_to destroy_user_session_path %>
 <%end%>
