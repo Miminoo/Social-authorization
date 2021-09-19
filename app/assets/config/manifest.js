@@ -3,4 +3,5 @@
 //= require myFiltr
 //= require mySort
 //= require myGetCheck
+//= require showhide
 //= require_tree
